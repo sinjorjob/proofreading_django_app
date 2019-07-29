@@ -1,0 +1,63 @@
+{% extends '../base.html' %}
+{% load bootstrap4 %}
+{% load widget_tweaks %}
+
+{% block title %}
+  文章チェック機能
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <form action="" method="post">{% csrf_token %}
+        <h1>文章チェック機能</h1>
+        <div class="form-group row my-4">         
+            <label class="col-lg-2 col-form-label"><h4>{{form.textone.label}}</h4></label><br>
+    		<div class="col-lg-6">       
+                {{form.textone|add_class:"form-control"}}
+
+    		</div>
+            <div class="col-lg-2">
+                    {{form.sensitivity.label}}       
+                    {{form.sensitivity|add_class:"form-control"}}
+         </div> 
+         <div class="col-lg-2">       
+                <a href = "http://localhost:8000/app/demo/">入力文クリア</a>
+               </div>
+        </div>
+        <div class="col-lg-2">       
+                <button type="submit" class="btn btn-primary">実行</button>
+            </div>
+     </form>
+     <hr>
+     <div id="resultarea">
+
+
+<div class="card border-dark mb-3 text-success">
+
+<div class="card-body">
+{{ message|safe }}
+</div></div>
+{% if rets %}
+<h4>解析結果</h4><br>  
+<div class="card mb-3">
+ <div class="card-header">
+ <div class="card-text">
+                      
+{{ rets|safe }}
+
+<hr>
+<b>＜指摘文字に対する改善候補＞</b><br>
+{% for item in suggestions %}
+<div class="card-text bg-primary text-white">
+{{item.0}} ＞＞{{item.1}}<br>
+{% endfor %}
+</div>
+</div>
+</div>
+</div> 
+{% endif %}
+
+</div>
+ </div>  
+{% endblock %}
