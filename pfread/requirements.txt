@@ -1,6 +1,6 @@
 certifi==2019.3.9
 chardet==3.0.4
-Django==2.2
+Django==2.2.21
 django-bootstrap4==0.0.8
 django-widgets-improved==1.5.0
 idna==2.8
